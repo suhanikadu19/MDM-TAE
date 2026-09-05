@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Digital Invoice Generator</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <body class="bg-gray-100 min-h-screen p-6">
+        <header class="bg-gradient-to-r from-blue-600 to indigo-600 text-whiye rounded-3xl p-6 sm:p-8 mb-6 shadow-xl">
+            <div class ="flex flex-xols sm:flex-row justidy-between items-start sm:items-center gap-5">
+                <div>
+                    <div class="flex items-center gap-3">
+                        <div clas="bg-white/20 p-3 rounded-2xl text-2xl"></div>
+<div>
+    <h1 class="text-2xl sm:text-4xl font-blod">
+        Digital Invoice
+    </h1>
+    <p class="text-blue-100 mt-1">Proffessional Invoice Generator</p>
+</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white/20 rounded-2xl p-4">
+                <p class="text-sm text-bluee-100">Invoice Number</p>
+                <p class="text-xl font-blod">#INV-001</p>
+                <input id="date"
+                type="date"
+                class="mt-2 bg-white/20 border-white/30 rounded-lg p-2 text-white">
+            </div>
+        </header>
+        <div class="gird gird-clos-1 md:grid-clos-2 gap-6 mb-6">
+            <div class="bg-gradient-to-br from-blue-100 to-bluee-200 rounded-3xl p-6 shadow-lg">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="bg-blue-600 text-white p-3 rounded-xl"></div>
+                <div>
+                    <h2 class="text-xl font-blod text-blue-800">From</h2>
+                    <p class="text-sm text-blue-600">
+                        Your business details
+                    </p>
+                </div>
+                </div>
+
+            </div>
+        <div>
+        <input type="text"
+        placeholder="Businsee Name"
+        class="w-full bg-white border border-blue-200 rounded-xl p-3 mb-3 outline-non focus:ring-2 focus:ring-blue-400">
+        <input type="email"
+        placeholder="Business Email"
+        class="w-full bg-white border border-blue-200 rounded-x p-3 mb-3 outline-none focus:ring-2 focus:ring-blue-400">
+        <textarea rows="3" placeholder="Bussiness Address" class="w-full bg-white border border-blue-200 rounded-xl p-3 outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+        </div>
+        <div class="bg-gradient-to-br from-purple-100 to-indigo-200 rounded-3xl p-6 shadow-lg">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="bg-indigo-600 text-white p-3 rounded-xl"></div>
+                <div>
+                    <h2 class="text-xl font-blod text-indigo-800">
+                        Bill To
+                    </h2>
+                    <p class="text-sm text-indigo-600">Customer details</p>
+                </div>
+            </div>
+
+        
+<input type="text"
+placeholder="Customer Name"
+class="w-full bg-white border border-indigo-200 rounded-xl p-3 mb-3 outline-none focus:ring-2 focus:ring-indigo-400">
+<input type="email"
+placeholder="Customer Email"
+class="w-full bg-white boder border-indigo-200 rounded-xl p-3 mb-3 outline-none foucs:ring-2 focus:ring-indigo-400">
+<textarea rows="3" placeholder="Customer Address" class="w-full bg-white border border-indigo-200 rounded-xl p-3 outline-none foucs:ring-2 foucs:ring-indigo-400"></textarea>
+   </div>
+   </div>
+   <div class="bg-gradient-to-br from-white to-blue-50 rounded-3xl p-5 sm:p-6 shadow-lg mb-6">
+    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-5">
+        <div>
+            <h2 class="text-2xl font-blod text-gray-800">
+                Invoice Items
+            </h2>
+            <p class="text-gray-500 text-sm">Add products or services</p>
+        </div>
+        <button onclick="addItem()"
+        class="no-print bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-blod px-5 py-3 rounded-xl shadow-md">
+        +Add Item
+    </button>
+    </div>
+    <div class="overflow-x-auto rounded-xl">
+        <table class="w-full min-w-[700px]">
+            <thead>
+                <tr class="bg-gradient-to-r from-blue-600 to indigo-600 text-white">
+                    <th class="p-3 text-left">
+                        Product / Service
+                    </th>
+                    <th class="p-3">Quantity</th>
+                    <th class="p-3">Price</th>
+                    <th class="p-3">Subtotal</th>
+                    <th class="p-3 no print">Action</th>
+                </tr>
+            </thead>
+            <tbody id="items"></tbody>
+        </table>
+    </div>
+    </div>
+
+   </div>
+   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2 bg-gradient-to-br from-white to-slate-100 rounded-3xl p-6 shadow-lg">
+        <h2 class="text-xl front-bold mb-4">Additional Notes</h2>
+        <textarea rows="6" placeholder="Thank you for your business!" class="w-full border border-gray-200 rounded-xl p-4 outline-none foucs:ring-2 focus:ring-blue-400"></textarea>
+    </div>
+    <div>
+    <div class="bg-gradient-to-br from-indigo-100 to-blue-200 rounded-3xl p-6 shadow-xl">
+        <h2 class="text-xl font-blod text-indigo-900 mb-5">Invoice Summary</h2>
+    </div>
+    <div class="flex justify-between mb-4">
+        <span class="text-gray-700">Subtotal</span>
+        <b id="subtotal">₹0.00</b>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+        <span class="text-gray-700">Tax(%)</span>
+        <input id="tax" type="number"
+        value="18" min="0" oninput="calculate()"
+        class="bg-white border rounded-lg p-2 w-20 text-center">
+
+    </div>
+    <div class="flex justify-between mb-4">
+        <span class="text-gray-700">Tax Amount</span>
+      <b id="taxAmount">₹0.00</b>
+    </div>
+    <hr class="border-indigo-300 my-5">
+    <div class="flex justify-between items-center text-xl font-bold text-blue-700">
+    <span>Grand Total</span>
+    <span id="total">₹0.00</span>
+</div>
+
+   <div class="flex justify-between items-center">
+   <!---- <span class="text-2xl font-extrabold text-blue-700">$0.00</span>-->
+   
+  <button onclick="window.print()" class="no-print w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-blod py-3 rounded-xl shadow-md">Print Invoice</button>
+</div>
+</div>
+<footer class="text-center text-gray-500 text-sm py-6">@ 2026 Digital Invoice Generator</footer>
+
+
+<script>
+const items = document.getElementById("items")
+function addItem() {
+
+    const row = document.createElement("tr");
+
+    row.className = "border-b border-gray-300";
+
+    row.innerHTML = `
+    
+    <td class="p-3">
+        <input type="text"
+            placeholder="Product / Service Name"
+            class="name w-full border rounded-lg p-2
+                   focus:ring-2 focus:ring-blue-400 outline-none">
+    </td>
+
+    <td class="p-3 text-center">
+        <input type="number"
+            value="1"
+            min="1"
+            class="qty w-24 border rounded-lg p-2 text-center
+                   focus:ring-2 focus:ring-blue-400 outline-none"
+            oninput="calculate()">
+    </td>
+
+    <td class="p-3 text-center">
+        <input type="number"
+            value="0"
+            min="0"
+            step="0"
+            class="price w-28 border rounded-lg p-2 text-center
+                   focus:ring-2 focus:ring-blue-400 outline-none"
+            oninput="calculate()">
+    </td>
+
+    <td class="p-3 text-center font-bold">
+        <span class="subtotal">₹0.00</span>
+    </td>
+
+    <td class="p-3 text-center">
+        <button onclick="removeItem(this)"
+            class="bg-red-500 hover:bg-red-600
+                   text-white px-4 py-2 rounded-lg">
+            Remove
+        </button>
+    </td>
+
+    `;
+
+    items.appendChild(row);
+
+    calculate();
+}
+function removeItem(button){
+    if(items.children.length <= 1){
+        alert("At least one item is required.");
+        return;
+    }
+    button.closest("tr").remove();
+    calculate();
+}
+        
+   
+function calculate() {
+
+    let subtotal = 0;
+
+    document.querySelectorAll("#items tr").forEach(row => {
+
+        let qty = Number(row.querySelector(".qty").value) || 0;
+        let price = Number(row.querySelector(".price").value) || 0;
+
+        let amount = qty * price;
+
+        row.querySelector(".subtotal").textContent =
+            "₹" + amount.toFixed(2);
+
+        subtotal += amount;
+    });
+
+    // Get tax rate
+    let taxRate = Number(document.getElementById("tax").value) || 0;
+
+    // Calculate tax
+    let taxAmount = subtotal * taxRate / 100;
+
+    // Calculate grand total
+    let total = subtotal + taxAmount;
+
+    // Display subtotal
+    document.getElementById("subtotal").textContent =
+        "₹" + subtotal.toFixed(2);
+
+    // Display tax amount
+    document.getElementById("taxAmount").textContent =
+        "₹" + taxAmount.toFixed(2);
+
+    // Display grand total
+    document.getElementById("total").textContent =
+        "₹" + total.toFixed(2);
+}
+
+</script>
+
+</body>
+
+</html>
